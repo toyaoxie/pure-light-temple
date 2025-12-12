@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pure Light Temple   净光法苑</title>
+  <meta name="description" content="Pure Light Temple is an inclusive online sanctuary connecting Buddhists and spiritual seekers through practice, wisdom, and community especially for those away from a physical temple." />
+
+  <!-- Tailwind (CDN for demo) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --pl-ivory: #FFFDF6;
+      --pl-paper: #FFF9E8;
+      --pl-gold:  #C9A45C;
+      --pl-gold-soft: #E8D6A8;
+      --pl-lotus: #F4C2D7;
+
+      --pl-ink: #1F2933;
+      --pl-ink-strong: #111827;
+      --pl-ink-soft: #374151;
+      --pl-ink-muted: #4B5563;
+
+      --pl-border: rgba(201,164,92,0.28);
+      --pl-shadow: 0 20px 60px rgba(17,24,39,0.12);
+    }
+
+    body {
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(800px 500px at 20% 10%, rgba(244,194,215,0.20), transparent 55%),
+                  radial-gradient(700px 420px at 80% 20%, rgba(201,164,92,0.16), transparent 55%),
+                  linear-gradient(180deg, var(--pl-ivory), var(--pl-paper));
+      color: var(--pl-ink);
+    }
+
+    h1, h2, h3 {
+      font-family: "Cormorant Garamond", ui-serif, Georgia, serif;
+      letter-spacing: 0.02em;
+      color: var(--pl-ink-strong);
+    }
+
+    .smallcaps { letter-spacing: 0.20em; text-transform: uppercase; }
+    .muted { color: var(--pl-ink-soft); }
+    .muted-light { color: var(--pl-ink-muted); }
+
+    .btn-primary {
+      background: linear-gradient(180deg, #FFF9E8, #F6E7B2);
+      color: var(--pl-ink-strong);
+      border: 1px solid rgba(201,164,92,0.35);
+      box-shadow: 0 10px 30px rgba(201,164,92,0.18);
+    }
+    .btn-primary:hover { background: linear-gradient(180deg, #FFFDF3, #F4E3A1); }
+
+    .btn-soft {
+      background: rgba(255, 255, 255, 0.55);
+      border: 1px solid var(--pl-border);
+    }
+    .btn-soft:hover { background: rgba(255, 255, 255, 0.75); }
+
+    .card {
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid var(--pl-border);
+      box-shadow: var(--pl-shadow);
+    }
+
+    .card-deep {
+      background: linear-gradient(180deg, rgba(255,255,255,0.74), rgba(255,255,255,0.62));
+      border: 1px solid rgba(201,164,92,0.18);
+      box-shadow: 0 18px 50px rgba(17,24,39,0.10);
+    }
+
+    /* Hero watermark (fade through hero; soften blur when returning) */
+    #heroWatermark {
+      position: absolute;
+      inset: -120px 0 auto 0;
+      display: flex;
+      justify-content: center;
+      pointer-events: none;
+      filter: blur(0px);
+      transition: opacity 600ms ease, transform 600ms ease, filter 600ms ease;
+      will-change: opacity, transform, filter;
+    }
+
+    /* Accessible details dropdown (desktop nav) */
+    details.navdrop > summary { list-style: none; cursor: pointer; }
+    details.navdrop > summary::-webkit-details-marker { display: none; }
+
+    /* Simple "page" system within single HTML */
+    [data-page] { display: none; }
+    [data-page].is-active { display: block; }
+  </style>
+</head>
+
+<body>
+  <!-- Background glow -->
+  <div class="fixed inset-0 -z-10">
+    <div class="absolute -top-24 left-1/2 h-80 w-80 -translate-x-1/2 rounded-full blur-3xl" style="background: rgba(244,194,215,0.22);"></div>
+    <div class="absolute bottom-[-140px] right-[-100px] h-96 w-96 rounded-full blur-3xl" style="background: rgba(201,164,92,0.16);"></div>
+  </div>
+
+  <!-- Header: keep it light, route to "pages" -->
+  <header class="sticky top-0 z-50 border-b" style="border-color: var(--pl-border); background: rgba(255,253,246,0.88);">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
+      <a href="#/home" class="flex items-center gap-4">
+        <div class="h-11 w-11 rounded-full grid place-items-center" style="border: 1px solid rgba(201,164,92,0.45); background: rgba(255,255,255,0.60);">
+          <svg width="28" height="28" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="32" cy="32" r="28" stroke="rgba(201,164,92,0.95)" stroke-width="3" />
+            <path d="M32 17c7 6 10 12 10 18 0 7-5 12-10 12s-10-5-10-12c0-6 3-12 10-18Z" stroke="rgba(201,164,92,0.95)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M18 36c4-3 8-4 14-1-4 6-9 10-14 10-4 0-7-3-7-6 0-1 0-2 1-3Z" stroke="rgba(201,164,92,0.95)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M46 36c-4-3-8-4-14-1 4 6 9 10 14 10 4 0 7-3 7-6 0-1 0-2-1-3Z" stroke="rgba(201,164,92,0.95)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M24 41c2-2 5-3 8-3s6 1 8 3" stroke="rgba(201,164,92,0.95)" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="leading-tight">
+          <div class="text-lg font-semibold" style="letter-spacing: 0.06em; color: var(--pl-ink-strong);">净光法苑</div>
+          <div class="text-xs smallcaps muted">Pure Light Temple</div>
+        </div>
+      </a>
+
+      <!-- Desktop nav: fewer items, route to pages -->
+      <nav class="hidden md:flex items-center gap-3 text-sm" style="color: var(--pl-ink-soft);">
+        <a class="rounded-2xl px-3 py-2 btn-soft" href="#/home">Home</a>
+
+        <details class="navdrop relative">
+          <summary class="px-3 py-2 rounded-2xl btn-soft">Buddha</summary>
+          <div class="absolute right-0 mt-2 w-72 rounded-3xl p-3 card" style="background: rgba(255,255,255,0.92);">
+            <a class="block rounded-2xl px-3 py-2 hover:bg-black/5" href="#/buddha"><span class="font-medium" style="color:var(--pl-ink-strong)">The Buddha</span><div class="text-xs muted-light">Life, qualities, and inspiration</div></a>
+            <a class="block rounded-2xl px-3 py-2 hover:bg-black/5" href="#/buddha#symbols"><span class="font-medium" style="color:var(--pl-ink-strong)">Symbols & imagery</span><div class="text-xs muted-light">What statues and forms represent</div></a>
+          </div>
+        </details>
+
+        <details class="navdrop relative">
+          <summary class="px-3 py-2 rounded-2xl btn-soft">Dharma</summary>
+          <div class="absolute right-0 mt-2 w-72 rounded-3xl p-3 card" style="background: rgba(255,255,255,0.92);">
+            <a class="block rounded-2xl px-3 py-2 hover:bg-black/5" href="#/dharma"><span class="font-medium" style="color:var(--pl-ink-strong)">Explain</span><div class="text-xs muted-light">Meaning in ordinary language</div></a>
+            <a class="block rounded-2xl px-3 py-2 hover:bg-black/5" href="#/dharma#library"><span class="font-medium" style="color:var(--pl-ink-strong)">Library</span><div class="text-xs muted-light">Texts, audio, resources</div></a>
+          </div>
+        </details>
+
+        <details class="navdrop relative">
+          <summary class="px-3 py-2 rounded-2xl btn-soft">Sangha</summary>
+          <div class="absolute right-0 mt-2 w-72 rounded-3xl p-3 card" style="background: rgba(255,255,255,0.92);">
+            <a class="block rounded-2xl px-3 py-2 hover:bg-black/5" href="#/sangha"><span class="font-medium" style="color:var(--pl-ink-strong)">Digital Shrine</span><div class="text-xs muted-light">Light, dedication, prayer</div></a>
+            <a class="block rounded-2xl px-3 py-2 hover:bg-black/5" href="#/sangha#events"><span class="font-medium" style="color:var(--pl-ink-strong)">Sessions</span><div class="text-xs muted-light">Weekly online rhythm</div></a>
+          </div>
+        </details>
+
+        <a class="rounded-2xl px-3 py-2 btn-soft" href="#/offerings">Offerings</a>
+        <a class="rounded-2xl px-3 py-2 btn-soft" href="#/about">About us</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a href="#/hall" class="hidden sm:inline-flex rounded-2xl px-4 py-2 text-sm btn-soft">Take a 3-minute pause</a>
+        <button id="menuBtn" class="md:hidden rounded-2xl px-3 py-2 text-sm btn-soft">Menu</button>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobileMenu" class="md:hidden hidden" style="border-top: 1px solid var(--pl-border); background: rgba(255,253,246,0.92);">
+      <div class="mx-auto max-w-6xl px-5 py-4 grid gap-4 text-sm" style="color: var(--pl-ink-soft);">
+        <a class="rounded-2xl px-4 py-2 btn-soft" href="#/home">Home</a>
+
+        <div class="rounded-3xl p-4 card" style="background: rgba(255,255,255,0.88);">
+          <div class="text-xs smallcaps muted">Hall</div>
+          <div class="mt-2 grid gap-2">
+            <a class="rounded-2xl px-3 py-2 hover:bg-black/5" href="#/hall">Pause</a>
+            <a class="rounded-2xl px-3 py-2 hover:bg-black/5" href="#/hall#practice">Practice</a>
+          </div>
+        </div>
+
+        <div class="rounded-3xl p-4 card" style="background: rgba(255,255,255,0.88);">
+          <div class="text-xs smallcaps muted">Dharma</div>
+          <div class="mt-2 grid gap-2">
+            <a class="rounded-2xl px-3 py-2 hover:bg-black/5" href="#/dharma">Explain</a>
+            <a class="rounded-2xl px-3 py-2 hover:bg-black/5" href="#/dharma#library">Library</a>
+          </div>
+        </div>
+
+        <div class="rounded-3xl p-4 card" style="background: rgba(255,255,255,0.88);">
+          <div class="text-xs smallcaps muted">Sangha</div>
+          <div class="mt-2 grid gap-2">
+            <a class="rounded-2xl px-3 py-2 hover:bg-black/5" href="#/sangha">Digital Shrine</a>
+            <a class="rounded-2xl px-3 py-2 hover:bg-black/5" href="#/sangha#events">Sessions</a>
+          </div>
+        </div>
+
+        <a class="rounded-2xl px-4 py-2 btn-soft" href="#/offerings">Offerings</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HOME PAGE (keep minimal, not everything) -->
+    <div data-page="home" class="is-active" id="page-home">
+      <section class="mx-auto max-w-6xl px-5 pt-14 pb-10 relative overflow-hidden" id="hero">
+        <div id="heroWatermark" aria-hidden="true">
+          <svg viewBox="0 0 600 600" class="w-[1200px] h-[1200px]" style="opacity: 0.07; transform: translateY(0px) scale(1);">
+            <circle cx="300" cy="300" r="260" fill="none" stroke="rgba(201,164,92,0.9)" stroke-width="18" />
+            <path d="M300 160c70 60 100 120 100 180 0 70-50 120-100 120s-100-50-100-120c0-60 30-120 100-180Z" fill="none" stroke="rgba(201,164,92,0.9)" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M160 330c40-30 80-40 140-10-40 60-90 100-140 100-40 0-70-30-70-60 0-10 0-20 10-30Z" fill="none" stroke="rgba(201,164,92,0.9)" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M440 330c-40-30-80-40-140-10 40 60 90 100 140 100 40 0 70-30 70-60 0-10 0-20-10-30Z" fill="none" stroke="rgba(201,164,92,0.9)" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M240 390c20-20 50-30 60-30s40 10 60 30" fill="none" stroke="rgba(201,164,92,0.9)" stroke-width="18" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
+          <div class="space-y-6">
+            <p class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs btn-soft" style="border-radius: 999px;">
+              <span class="smallcaps">净   静   光</span>
+              <span class="muted">Purity   Stillness   Light</span>
+            </p>
+
+            <div class="space-y-2">
+              <h1 class="text-4xl md:text-6xl font-semibold leading-tight">Pure Light Temple</h1>
+              <div class="text-lg md:text-xl muted" style="letter-spacing: 0.08em;">净光法苑</div>
+            </div>
+
+            <p class="text-[15px] md:text-base muted leading-relaxed max-w-xl">
+              A shared place for Buddhists and spiritual seekers to pause, learn meaning, and practise gently.
+              Designed for real life: travel, study abroad, busy schedules, and distance from a physical temple.
+            </p>
+
+            <div class="flex flex-wrap gap-3">
+              <a href="#/hall" class="rounded-2xl px-5 py-3 text-sm font-medium btn-primary">Take a 3-minute pause</a>
+              <a href="#/dharma" class="rounded-2xl px-5 py-3 text-sm btn-soft">Learn the meaning</a>
+            </div>
+
+            <p class="text-xs muted-light">No account   No belief   Just a quiet reset</p>
+
+            <div class="grid gap-3 sm:grid-cols-3 pt-6">
+              <div class="rounded-2xl p-4 card"><div class="text-xs muted">Daily</div><div class="font-medium">Pause</div></div>
+              <div class="rounded-2xl p-4 card"><div class="text-xs muted">Weekly</div><div class="font-medium">Online sessions</div></div>
+              <div class="rounded-2xl p-4 card"><div class="text-xs muted">Always</div><div class="font-medium">Explain + Library</div></div>
+            </div>
+          </div>
+
+          <div class="rounded-3xl p-6 card">
+            <div class="text-sm font-medium">Start here</div>
+            <p class="mt-2 text-sm muted-light leading-relaxed">
+              New to spirituality? Follow this simple path.
+            </p>
+
+            <div class="mt-4 grid gap-3">
+              <a href="#/hall" class="rounded-3xl p-4 card-deep block">
+                <div class="text-sm font-medium">1   Take a pause</div>
+                <div class="mt-1 text-sm muted-light">3 minutes, guided, beginner-friendly</div>
+              </a>
+              <a href="#/dharma" class="rounded-3xl p-4 card-deep block">
+                <div class="text-sm font-medium">2   Learn the meaning</div>
+                <div class="mt-1 text-sm muted-light">Prayer, dedication, symbols   explained simply</div>
+              </a>
+              <a href="#/sangha" class="rounded-3xl p-4 card-deep block">
+                <div class="text-sm font-medium">3   Practise gently</div>
+                <div class="mt-1 text-sm muted-light">Digital shrine and quiet sessions, optional</div>
+              </a>
+            </div>
+
+            <div class="mt-5 rounded-3xl p-5 card-deep">
+              <div class="text-xs smallcaps muted">Core strategy</div>
+              <p class="mt-2 text-sm muted-light leading-relaxed">
+                We make spiritual knowledge accessible by translating it into ordinary language and small, repeatable practices.
+                Dialogue is welcomed. Coercion is not.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="mx-auto max-w-6xl px-5 pb-12">
+        <div class="rounded-3xl p-8 card">
+          <div class="grid gap-10 lg:grid-cols-3">
+            <div class="lg:col-span-1">
+              <p class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs btn-soft" style="border-radius: 999px;">
+                <span class="smallcaps">初衷</span>
+                <span class="muted">Purpose</span>
+              </p>
+              <h2 class="mt-4 text-2xl font-semibold">Making wisdom usable in daily life</h2>
+              <p class="mt-3 muted leading-relaxed">
+                Pure Light Temple is grounded in the Three Jewels   Buddha, Dharma, and Sangha   and exists to connect sincere practitioners and spiritual seekers in one shared space, especially for those away from a physical temple.
+              </p>
+            </div>
+
+            <div class="lg:col-span-2 grid gap-4 md:grid-cols-3">
+              <div class="rounded-3xl p-6 card-deep">
+                <div class="text-sm font-medium">Buddha   Inspiration</div>
+                <p class="mt-2 text-sm muted-light leading-relaxed">Understanding the Buddha as a human example of clarity, compassion, and awakening   beyond symbols or belief.</p>
+              </div>
+              <div class="rounded-3xl p-6 card-deep">
+                <div class="text-sm font-medium">Dharma   Accessible meaning</div>
+                <p class="mt-2 text-sm muted-light leading-relaxed">Explaining spiritual ideas without jargon or pressure, so wisdom can be understood and used.</p>
+              </div>
+              <div class="rounded-3xl p-6 card-deep">
+                <div class="text-sm font-medium">Sangha   Inclusive practice</div>
+                <p class="mt-2 text-sm muted-light leading-relaxed">A respectful space for dialogue and shared practice   not a single voice or authority.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 grid gap-4 md:grid-cols-4">
+            <a href="#/hall" class="rounded-3xl p-6 card-deep block">
+              <div class="text-xs muted-light">Hall</div>
+              <div class="mt-2 font-medium">Pause + Practice</div>
+              <div class="mt-2 text-sm muted-light">Start with calm. Build consistency.</div>
+            </a>
+            <a href="#/dharma" class="rounded-3xl p-6 card-deep block">
+              <div class="text-xs muted-light">Dharma</div>
+              <div class="mt-2 font-medium">Explain</div>
+              <div class="mt-2 text-sm muted-light">Prayer, dedication, symbols made simple.</div>
+            </a>
+            <a href="#/sangha" class="rounded-3xl p-6 card-deep block">
+              <div class="text-xs muted-light">Sangha</div>
+              <div class="mt-2 font-medium">Shrine + Sessions</div>
+              <div class="mt-2 text-sm muted-light">A shared place when you are far from home.</div>
+            </a>
+            <a href="#/offerings" class="rounded-3xl p-6 card-deep block">
+              <div class="text-xs muted-light">Offerings</div>
+              <div class="mt-2 font-medium">Support</div>
+              <div class="mt-2 text-sm muted-light">Keep access free. Fund translation and care.</div>
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- HALL PAGE -->
+    <div data-page="hall" id="page-hall">
+      <section class="mx-auto max-w-6xl px-5 py-12">
+        <div class="rounded-3xl p-8 card">
+          <div class="grid gap-8 lg:grid-cols-2 lg:items-start">
+            <div>
+              <p class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs btn-soft" style="border-radius: 999px;">
+                <span class="smallcaps">Hall</span>
+                <span class="muted">入殿</span>
+              </p>
+              <h2 class="mt-4 text-3xl font-semibold">Take a 3-minute pause</h2>
+              <p class="mt-3 muted leading-relaxed max-w-xl">
+                A simple guided reset for anyone. No background required.
+              </p>
+
+              <div class="mt-6 rounded-3xl p-6 card-deep">
+                <div class="text-xs smallcaps muted">Practice</div>
+                <ol class="mt-3 space-y-2 text-sm muted-light leading-relaxed list-decimal list-inside">
+                  <li>Inhale slowly for four counts.</li>
+                  <li>Exhale slowly for six counts.</li>
+                  <li>Repeat ten times. Let the mind soften.</li>
+                </ol>
+
+                <div class="mt-5 flex flex-wrap gap-3">
+                  <button id="startTimerBtn" class="rounded-2xl px-4 py-2 text-sm font-medium btn-primary">Start 3 minute timer</button>
+                  <button id="toggleBellBtn" class="rounded-2xl px-4 py-2 text-sm btn-soft">Bell sound: off</button>
+                </div>
+
+                <div class="mt-3 text-sm muted">Timer: <span id="timerText" class="font-medium" style="color: var(--pl-ink-strong);">03:00</span></div>
+              </div>
+
+              <p class="mt-4 text-xs muted-light">Tip: use this before prayer, study, or a difficult conversation.</p>
+            </div>
+
+            <div id="practice" class="rounded-3xl p-6 card">
+              <h3 class="text-2xl font-semibold">Practice</h3>
+              <p class="mt-2 muted-light">Small practices that fit real life.</p>
+
+              <div class="mt-4 flex gap-2 flex-wrap">
+                <button class="filterBtn rounded-2xl px-4 py-2 text-sm btn-soft" data-filter="all">All</button>
+                <button class="filterBtn rounded-2xl px-4 py-2 text-sm btn-soft" data-filter="breath">Breath</button>
+                <button class="filterBtn rounded-2xl px-4 py-2 text-sm btn-soft" data-filter="compassion">Compassion</button>
+                <button class="filterBtn rounded-2xl px-4 py-2 text-sm btn-soft" data-filter="reflection">Reflection</button>
+              </div>
+
+              <div id="practiceGrid" class="mt-5 grid gap-4 md:grid-cols-2">
+                <div class="practiceCard rounded-3xl p-6 card-deep" data-tag="breath"><div class="text-xs muted-light">3 minutes • Breath</div><div class="mt-2 font-medium">4 in, 6 out</div><p class="mt-2 text-sm muted-light leading-relaxed">Stabilise attention by extending the exhale gently.</p></div>
+                <div class="practiceCard rounded-3xl p-6 card-deep" data-tag="compassion"><div class="text-xs muted-light">5 minutes • Compassion</div><div class="mt-2 font-medium">May you be well</div><p class="mt-2 text-sm muted-light leading-relaxed">Offer quiet goodwill to yourself and one person.</p></div>
+                <div class="practiceCard rounded-3xl p-6 card-deep" data-tag="reflection"><div class="text-xs muted-light">7 minutes • Reflection</div><div class="mt-2 font-medium">What matters now</div><p class="mt-2 text-sm muted-light leading-relaxed">Name the real priority beneath the surface noise.</p></div>
+                <div class="practiceCard rounded-3xl p-6 card-deep" data-tag="breath"><div class="text-xs muted-light">2 minutes • Breath</div><div class="mt-2 font-medium">Body scan</div><p class="mt-2 text-sm muted-light leading-relaxed">Move attention from forehead to feet without judgement.</p></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#/home" class="rounded-2xl px-4 py-2 text-sm btn-soft">Back to Home</a>
+            <a href="#/dharma" class="rounded-2xl px-4 py-2 text-sm btn-soft">Learn the meaning</a>
+            <a href="#/sangha" class="rounded-2xl px-4 py-2 text-sm btn-soft">Visit the shrine</a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- DHARMA PAGE -->
+    <div data-page="dharma" id="page-dharma">
+      <section class="mx-auto max-w-6xl px-5 py-12">
+        <div class="rounded-3xl p-8 card">
+          <p class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs btn-soft" style="border-radius: 999px;">
+            <span class="smallcaps">Dharma</span>
+            <span class="muted">明白意义</span>
+          </p>
+          <h2 class="mt-4 text-3xl font-semibold">Spiritual ideas, explained simply</h2>
+          <p class="mt-3 muted leading-relaxed max-w-3xl">
+            Each topic answers three questions: what it is, what it is not, and how to try it today.
+          </p>
+
+          <div class="mt-6 grid gap-4 md:grid-cols-3">
+            <article class="rounded-3xl p-6 card-deep">
+              <div class="text-xs muted-light">Explainer • 3 min</div>
+              <h3 class="mt-2 font-medium">What is prayer?</h3>
+              <p class="mt-2 text-sm muted-light leading-relaxed"><strong>What it is:</strong> A way to set intention and remember what matters.</p>
+              <p class="mt-1 text-sm muted-light leading-relaxed"><strong>What it is not:</strong> Asking for miracles or pleasing a higher power.</p>
+              <p class="mt-1 text-sm muted-light leading-relaxed"><strong>Try this:</strong> For one minute, silently wish something good for yourself and one other person.</p>
+            </article>
+
+            <article class="rounded-3xl p-6 card-deep">
+              <div class="text-xs muted-light">Explainer • 3 min</div>
+              <h3 class="mt-2 font-medium">What is dedication (回向)?</h3>
+              <p class="mt-2 text-sm muted-light leading-relaxed"><strong>What it is:</strong> Sharing the benefit of a calm or kind moment with others.</p>
+              <p class="mt-1 text-sm muted-light leading-relaxed"><strong>What it is not:</strong> A rule, a debt, or a religious obligation.</p>
+              <p class="mt-1 text-sm muted-light leading-relaxed"><strong>Try this:</strong> After a pause, think of one person and wish them ease.</p>
+            </article>
+
+            <article class="rounded-3xl p-6 card-deep">
+              <div class="text-xs muted-light">Explainer • 3 min</div>
+              <h3 class="mt-2 font-medium">Why light a lamp?</h3>
+              <p class="mt-2 text-sm muted-light leading-relaxed"><strong>What it is:</strong> A symbolic reminder of clarity and care.</p>
+              <p class="mt-1 text-sm muted-light leading-relaxed"><strong>What it is not:</strong> Worship of an object or belief in special powers.</p>
+              <p class="mt-1 text-sm muted-light leading-relaxed"><strong>Try this:</strong> As you light a lamp, take one steady breath and name a quality you want to carry.</p>
+            </article>
+          </div>
+
+          <div id="library" class="mt-10 rounded-3xl p-8 card-deep">
+            <div class="flex items-end justify-between gap-4 flex-wrap">
+              <div>
+                <h3 class="text-2xl font-semibold">Library   资料库</h3>
+                <p class="mt-2 text-sm muted-light leading-relaxed">Texts, audio, guides, and shared materials. Curated to keep wisdom accessible and practical.</p>
+              </div>
+              <a class="rounded-2xl px-4 py-2 text-sm btn-soft" href="#/offerings">Support translation →</a>
+            </div>
+
+            <div class="mt-6 grid gap-4 md:grid-cols-3">
+              <div class="rounded-3xl p-6 card" style="background: rgba(255,255,255,0.72);">
+                <div class="text-sm font-medium">Readings</div>
+                <p class="mt-2 text-sm muted-light leading-relaxed">Short texts, translations, commentaries.</p>
+              </div>
+              <div class="rounded-3xl p-6 card" style="background: rgba(255,255,255,0.72);">
+                <div class="text-sm font-medium">Audio & Video</div>
+                <p class="mt-2 text-sm muted-light leading-relaxed">Guided sits, talks, recorded sessions.</p>
+              </div>
+              <div class="rounded-3xl p-6 card" style="background: rgba(255,255,255,0.72);">
+                <div class="text-sm font-medium">Practical Guides</div>
+                <p class="mt-2 text-sm muted-light leading-relaxed">How to pray, dedicate, and practise daily.</p>
+              </div>
+            </div>
+
+            <p class="mt-5 text-xs muted-light">In production, this section can link to Notion, Google Drive, GitHub, or a CMS.</p>
+          </div>
+
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#/home" class="rounded-2xl px-4 py-2 text-sm btn-soft">Back to Home</a>
+            <a href="#/hall" class="rounded-2xl px-4 py-2 text-sm btn-soft">Take a pause</a>
+            <a href="#/sangha" class="rounded-2xl px-4 py-2 text-sm btn-soft">Join sessions</a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- SANGHA PAGE -->
+    <div data-page="sangha" id="page-sangha">
+      <section class="mx-auto max-w-6xl px-5 py-12">
+        <div class="rounded-3xl p-8 card">
+          <p class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs btn-soft" style="border-radius: 999px;">
+            <span class="smallcaps">Sangha</span>
+            <span class="muted">共修与交流</span>
+          </p>
+          <h2 class="mt-4 text-3xl font-semibold">A shared place when you are far from home</h2>
+          <p class="mt-3 muted leading-relaxed max-w-3xl">
+            Digital shrine for symbolic practice, plus online quiet sessions and community guidelines.
+          </p>
+
+          <!-- Digital Shrine -->
+          <div class="mt-8 grid gap-6 lg:grid-cols-2 lg:items-start">
+            <div class="rounded-3xl p-6 card-deep">
+              <h3 class="text-2xl font-semibold">Digital Shrine</h3>
+              <p class="mt-2 text-sm muted-light leading-relaxed">
+                A simple, optional place to set intention, offer a symbolic light, and dedicate merit (回向).
+              </p>
+              <p class="mt-3 text-xs muted-light">Symbolic and optional. It does not replace a physical temple.</p>
+
+              <div class="mt-5 rounded-3xl p-5 card" style="position: relative; overflow: hidden; background: rgba(255,255,255,0.74);">
+                <div id="candleGlow" aria-hidden="true" style="position:absolute; inset:-40px; opacity:0; transition: opacity 500ms ease; background: radial-gradient(closest-side, rgba(201,164,92,0.35), transparent 60%);"></div>
+                <div style="position: relative;">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <div class="text-sm font-medium">Offer a light</div>
+                      <div class="text-xs muted-light">A reminder of clarity and care</div>
+                    </div>
+                    <button id="candleBtn" class="rounded-2xl px-4 py-2 text-sm btn-soft">Light: off</button>
+                  </div>
+
+                  <div class="mt-5">
+                    <div class="text-xs smallcaps muted">Dedication (回向)</div>
+                    <textarea id="dedicationText" class="mt-3 w-full rounded-2xl border px-4 py-3 text-sm focus:outline-none focus:ring-2" style="border-color: var(--pl-border); background: rgba(255,255,255,0.70);" rows="4" placeholder="May this practice bring clarity and compassion to…"></textarea>
+
+                    <div class="mt-3 flex flex-wrap gap-2">
+                      <button id="dedicateBtn" class="rounded-2xl px-4 py-2 text-sm font-medium btn-primary">Dedicate</button>
+                      <button id="templateBtn" class="rounded-2xl px-4 py-2 text-sm btn-soft">Use a template</button>
+                      <button id="clearDedicationBtn" class="rounded-2xl px-4 py-2 text-sm btn-soft">Clear</button>
+                    </div>
+
+                    <p id="dedicationMsg" class="mt-3 text-xs muted-light" style="min-height: 1.2em;"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="events" class="rounded-3xl p-6 card-deep">
+              <h3 class="text-2xl font-semibold">Online sessions</h3>
+              <p class="mt-2 text-sm muted-light leading-relaxed">
+                Experience first: a quiet sit, a simple explanation, and time for questions.
+              </p>
+
+              <div class="mt-5 grid gap-4">
+                <div class="rounded-3xl p-5 card" style="background: rgba(255,255,255,0.72);">
+                  <div class="text-xs muted-light">Weekly</div>
+                  <div class="mt-1 font-medium">Guided quiet sit</div>
+                  <div class="mt-2 text-sm muted-light">30 minutes sit + 10 minutes reflection.</div>
+                </div>
+                <div class="rounded-3xl p-5 card" style="background: rgba(255,255,255,0.72);">
+                  <div class="text-xs muted-light">Weekly</div>
+                  <div class="mt-1 font-medium">Meaning circle</div>
+                  <div class="mt-2 text-sm muted-light">Prayer, dedication, symbols   explained simply.</div>
+                </div>
+                <div class="rounded-3xl p-5 card" style="background: rgba(255,255,255,0.72);">
+                  <div class="text-xs muted-light">Monthly</div>
+                  <div class="mt-1 font-medium">Half-day online retreat</div>
+                  <div class="mt-2 text-sm muted-light">Silence, guidance, and dedication.</div>
+                </div>
+              </div>
+
+              <div class="mt-6 rounded-3xl p-5 card" style="background: rgba(255,255,255,0.72);">
+                <div class="font-medium">Community guidelines</div>
+                <ul class="mt-3 space-y-2 text-sm muted-light leading-relaxed list-disc list-inside">
+                  <li>Speak from experience, not certainty.</li>
+                  <li>Respect privacy and do not share others’ stories.</li>
+                  <li>No coercion, no financial pressure, no one voice.</li>
+                  <li>If in crisis, seek local professional support.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#/home" class="rounded-2xl px-4 py-2 text-sm btn-soft">Back to Home</a>
+            <a href="#/dharma" class="rounded-2xl px-4 py-2 text-sm btn-soft">Read explainers</a>
+            <a href="#/offerings" class="rounded-2xl px-4 py-2 text-sm btn-soft">Support the temple</a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- OFFERINGS PAGE -->
+    <div data-page="offerings" id="page-offerings">
+      <section class="mx-auto max-w-6xl px-5 py-12">
+        <div class="rounded-3xl p-8 card">
+          <p class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs btn-soft" style="border-radius: 999px;">
+            <span class="smallcaps">Offerings</span>
+            <span class="muted">供养与支持</span>
+          </p>
+          <h2 class="mt-4 text-3xl font-semibold">Keep access free</h2>
+          <p class="mt-3 muted leading-relaxed max-w-3xl">
+            Offerings sustain platform costs, moderation, accessibility, and translation.
+            This is optional and transparent.
+          </p>
+
+          <div class="mt-8 grid gap-6 lg:grid-cols-2 lg:items-start">
+            <div class="rounded-3xl p-6 card-deep">
+              <h3 class="text-2xl font-semibold">Patronage</h3>
+              <p class="mt-2 text-sm muted-light leading-relaxed">A temple-style membership: supporting the space, not buying access.</p>
+
+              <div class="mt-5 grid gap-3">
+                <div class="rounded-3xl p-5 card" style="background: rgba(255,255,255,0.72);">
+                  <div class="text-xs muted-light">Monthly</div>
+                  <div class="mt-1 font-medium">Lotus Supporter   5</div>
+                  <div class="mt-2 text-sm muted-light">Sustain free entry for newcomers.</div>
+                </div>
+                <div class="rounded-3xl p-5 card" style="background: rgba(255,255,255,0.72);">
+                  <div class="text-xs muted-light">Monthly</div>
+                  <div class="mt-1 font-medium">Lamp Keeper   15</div>
+                  <div class="mt-2 text-sm muted-light">Support weekly sessions and moderation.</div>
+                </div>
+                <div class="rounded-3xl p-5 card" style="background: rgba(255,255,255,0.72);">
+                  <div class="text-xs muted-light">Monthly</div>
+                  <div class="mt-1 font-medium">Translation Patron   50</div>
+                  <div class="mt-2 text-sm muted-light">Fund translation and accessible materials.</div>
+                </div>
+              </div>
+
+              <div class="mt-5 flex flex-wrap gap-3">
+                <button class="rounded-2xl px-5 py-3 text-sm font-medium btn-primary">Become a patron</button>
+                <button class="rounded-2xl px-5 py-3 text-sm btn-soft">Make a one-time offering</button>
+              </div>
+
+              <p class="mt-3 text-xs muted-light">Demo buttons only. Connect to Stripe later.</p>
+            </div>
+
+            <div class="rounded-3xl p-6 card-deep">
+              <h3 class="text-2xl font-semibold">Where offerings go</h3>
+              <div class="mt-4 grid gap-4">
+                <div class="rounded-3xl p-5 card" style="background: rgba(255,255,255,0.72);">
+                  <div class="font-medium">Platform + accessibility</div>
+                  <div class="mt-2 text-sm muted-light">Hosting, audio captions, and basic tooling.</div>
+                </div>
+                <div class="rounded-3xl p-5 card" style="background: rgba(255,255,255,0.72);">
+                  <div class="font-medium">Moderation + care</div>
+                  <div class="mt-2 text-sm muted-light">A safe space and clear boundaries.</div>
+                </div>
+                <div class="rounded-3xl p-5 card" style="background: rgba(255,255,255,0.72);">
+                  <div class="font-medium">Translation + library</div>
+                  <div class="mt-2 text-sm muted-light">Making wisdom accessible across languages.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#/home" class="rounded-2xl px-4 py-2 text-sm btn-soft">Back to Home</a>
+            <a href="#/dharma" class="rounded-2xl px-4 py-2 text-sm btn-soft">Visit Library</a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Footer (global) -->
+    <footer class="border-t" style="border-color: var(--pl-border);">
+      <div class="mx-auto max-w-6xl px-5 py-12 grid gap-10 md:grid-cols-3">
+        <!-- Temple identity -->
+        <div class="text-sm muted">
+          <div class="font-medium" style="color: var(--pl-ink-strong);">Pure Light Temple   净光法苑</div>
+          <div class="mt-2">A quiet online sanctuary for practice, learning, and gentle connection.</div>
+          <div class="mt-3 text-xs muted-light">© <span id="year"></span> Pure Light Temple</div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="text-sm">
+          <div class="font-medium mb-3" style="color: var(--pl-ink-strong);">Explore</div>
+          <div class="grid gap-2">
+            <a class="hover:underline" href="#/home">Home</a>
+            <a class="hover:underline" href="#/hall">Hall   Pause</a>
+            <a class="hover:underline" href="#/dharma">Dharma   Learn</a>
+            <a class="hover:underline" href="#/sangha">Sangha   Community</a>
+            <a class="hover:underline" href="#/offerings">Offerings</a>
+            <a class="hover:underline" href="#/about">About us</a>
+          </div>
+        </div>
+
+        <!-- Contact & social -->
+        <div class="text-sm">
+          <div class="font-medium mb-3" style="color: var(--pl-ink-strong);">Contact</div>
+          <div class="space-y-2">
+            <div class="muted-light">Email</div>
+            <a href="mailto:purelighttemple@gmail.com" class="underline">purelighttemple@gmail.com</a>
+          </div>
+
+          <div class="mt-5">
+            <div class="font-medium mb-2" style="color: var(--pl-ink-strong);">Social</div>
+            <div class="flex flex-wrap gap-2">
+              <a class="rounded-2xl px-3 py-2 text-xs btn-soft" href="#" aria-label="Instagram">Instagram</a>
+              <a class="rounded-2xl px-3 py-2 text-xs btn-soft" href="#" aria-label="X">X</a>
+              <a class="rounded-2xl px-3 py-2 text-xs btn-soft" href="#" aria-label="YouTube">YouTube</a>
+            </div>
+            <p class="mt-2 text-xs muted-light">Links can be added when accounts are ready.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
