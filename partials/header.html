@@ -1,8 +1,8 @@
-<!-- Pure Light Temple — Header (partial) -->
+<!-- Pure Light Temple — Header (partial, multipage) -->
 <header class="sticky top-0 z-50 border-b"
   style="border-color: var(--pl-border); background: rgba(255,253,246,0.88);">
   <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-    <a href="#/home" class="flex items-center gap-4">
+    <a data-pl-href="/index.html" class="flex items-center gap-4">
       <div class="h-11 w-11 rounded-full grid place-items-center"
         style="border: 1px solid rgba(201,164,92,0.45); background: rgba(255,255,255,0.60);">
         <svg width="28" height="28" viewBox="0 0 64 64" fill="none"
@@ -28,58 +28,65 @@
 
     <!-- Desktop nav -->
     <nav class="hidden md:flex items-center gap-3 text-sm" style="color: var(--pl-ink-soft);">
-      <a class="rounded-2xl px-3 py-2 btn-soft pl-navlink" data-route="/home" href="#/home">Home</a>
+      <a class="rounded-2xl px-3 py-2 btn-soft pl-navlink" data-pl-href="/index.html" data-route="/index.html">Home</a>
 
-      <details class="navdrop relative">
+      <details class="navdrop relative" data-pl-dropdown>
         <summary class="px-3 py-2 rounded-2xl btn-soft">Buddha</summary>
         <div class="absolute right-0 mt-2 w-72 rounded-3xl p-3 card" style="background: rgba(255,255,255,0.92);">
-          <a class="block rounded-2xl px-3 py-2 hover:bg-black/5 pl-navlink" data-route="/buddha" href="#/buddha">
+          <a class="block rounded-2xl px-3 py-2 hover:bg-black/5 pl-navlink"
+             data-pl-href="/pages/buddha.html" data-route="/pages/buddha.html">
             <span class="font-medium" style="color:var(--pl-ink-strong)">The Buddha</span>
             <div class="text-xs muted-light">Life, qualities, and inspiration</div>
           </a>
-          <a class="block rounded-2xl px-3 py-2 hover:bg-black/5 pl-navlink" data-route="/buddha" href="#/buddha#symbols">
+          <a class="block rounded-2xl px-3 py-2 hover:bg-black/5 pl-navlink"
+             data-pl-href="/pages/buddha.html#symbols" data-route="/pages/buddha.html">
             <span class="font-medium" style="color:var(--pl-ink-strong)">Symbols & imagery</span>
             <div class="text-xs muted-light">What statues and forms represent</div>
           </a>
         </div>
       </details>
 
-      <details class="navdrop relative">
+      <details class="navdrop relative" data-pl-dropdown>
         <summary class="px-3 py-2 rounded-2xl btn-soft">Dharma</summary>
         <div class="absolute right-0 mt-2 w-72 rounded-3xl p-3 card" style="background: rgba(255,255,255,0.92);">
-          <a class="block rounded-2xl px-3 py-2 hover:bg-black/5 pl-navlink" data-route="/dharma" href="#/dharma">
+          <a class="block rounded-2xl px-3 py-2 hover:bg-black/5 pl-navlink"
+             data-pl-href="/pages/dharma.html" data-route="/pages/dharma.html">
             <span class="font-medium" style="color:var(--pl-ink-strong)">Explain</span>
             <div class="text-xs muted-light">Meaning in ordinary language</div>
           </a>
-          <a class="block rounded-2xl px-3 py-2 hover:bg-black/5 pl-navlink" data-route="/dharma" href="#/dharma#library">
+          <a class="block rounded-2xl px-3 py-2 hover:bg-black/5 pl-navlink"
+             data-pl-href="/pages/dharma.html#library" data-route="/pages/dharma.html">
             <span class="font-medium" style="color:var(--pl-ink-strong)">Library</span>
             <div class="text-xs muted-light">Texts, audio, resources</div>
           </a>
         </div>
       </details>
 
-      <details class="navdrop relative">
+      <details class="navdrop relative" data-pl-dropdown>
         <summary class="px-3 py-2 rounded-2xl btn-soft">Sangha</summary>
         <div class="absolute right-0 mt-2 w-72 rounded-3xl p-3 card" style="background: rgba(255,255,255,0.92);">
-          <a class="block rounded-2xl px-3 py-2 hover:bg-black/5 pl-navlink" data-route="/sangha" href="#/sangha">
+          <a class="block rounded-2xl px-3 py-2 hover:bg-black/5 pl-navlink"
+             data-pl-href="/pages/sangha.html" data-route="/pages/sangha.html">
             <span class="font-medium" style="color:var(--pl-ink-strong)">Digital Shrine</span>
             <div class="text-xs muted-light">Light, dedication, prayer</div>
           </a>
-          <a class="block rounded-2xl px-3 py-2 hover:bg-black/5 pl-navlink" data-route="/sangha" href="#/sangha#events">
+          <a class="block rounded-2xl px-3 py-2 hover:bg-black/5 pl-navlink"
+             data-pl-href="/pages/sangha.html#events" data-route="/pages/sangha.html">
             <span class="font-medium" style="color:var(--pl-ink-strong)">Sessions</span>
             <div class="text-xs muted-light">Weekly online rhythm</div>
           </a>
         </div>
       </details>
 
-      <a class="rounded-2xl px-3 py-2 btn-soft pl-navlink" data-route="/offerings" href="#/offerings">Offerings</a>
-      <a class="rounded-2xl px-3 py-2 btn-soft pl-navlink" data-route="/about" href="#/about">About us</a>
+      <a class="rounded-2xl px-3 py-2 btn-soft pl-navlink"
+         data-pl-href="/pages/offerings.html" data-route="/pages/offerings.html">Offerings</a>
+      <a class="rounded-2xl px-3 py-2 btn-soft pl-navlink"
+         data-pl-href="/pages/about.html" data-route="/pages/about.html">About us</a>
     </nav>
 
     <div class="flex items-center gap-3">
-      <a href="#/hall" class="hidden sm:inline-flex rounded-2xl px-4 py-2 text-sm btn-soft pl-navlink" data-route="/hall">
-        Take a 3-minute pause
-      </a>
+      <a class="hidden sm:inline-flex rounded-2xl px-4 py-2 text-sm btn-soft pl-navlink"
+         data-pl-href="/pages/hall.html" data-route="/pages/hall.html">Take a 3-minute pause</a>
       <button id="menuBtn" class="md:hidden rounded-2xl px-3 py-2 text-sm btn-soft" type="button">Menu</button>
     </div>
   </div>
@@ -88,35 +95,44 @@
   <div id="mobileMenu" class="md:hidden hidden"
     style="border-top: 1px solid var(--pl-border); background: rgba(255,253,246,0.92);">
     <div class="mx-auto max-w-6xl px-5 py-4 grid gap-4 text-sm" style="color: var(--pl-ink-soft);">
-      <a class="rounded-2xl px-4 py-2 btn-soft pl-navlink" data-route="/home" href="#/home">Home</a>
+      <a class="rounded-2xl px-4 py-2 btn-soft pl-navlink" data-pl-href="/index.html" data-route="/index.html">Home</a>
 
       <div class="rounded-3xl p-4 card" style="background: rgba(255,255,255,0.88);">
         <div class="text-xs smallcaps muted">Hall</div>
         <div class="mt-2 grid gap-2">
-          <a class="rounded-2xl px-3 py-2 hover:bg-black/5 pl-navlink" data-route="/hall" href="#/hall">Pause</a>
-          <a class="rounded-2xl px-3 py-2 hover:bg-black/5 pl-navlink" data-route="/hall" href="#/hall#practice">Practice</a>
+          <a class="rounded-2xl px-3 py-2 hover:bg-black/5 pl-navlink"
+             data-pl-href="/pages/hall.html" data-route="/pages/hall.html">Pause</a>
+          <a class="rounded-2xl px-3 py-2 hover:bg-black/5 pl-navlink"
+             data-pl-href="/pages/hall.html#practice" data-route="/pages/hall.html">Practice</a>
         </div>
       </div>
 
       <div class="rounded-3xl p-4 card" style="background: rgba(255,255,255,0.88);">
         <div class="text-xs smallcaps muted">Dharma</div>
         <div class="mt-2 grid gap-2">
-          <a class="rounded-2xl px-3 py-2 hover:bg-black/5 pl-navlink" data-route="/dharma" href="#/dharma">Explain</a>
-          <a class="rounded-2xl px-3 py-2 hover:bg-black/5 pl-navlink" data-route="/dharma" href="#/dharma#library">Library</a>
+          <a class="rounded-2xl px-3 py-2 hover:bg-black/5 pl-navlink"
+             data-pl-href="/pages/dharma.html" data-route="/pages/dharma.html">Explain</a>
+          <a class="rounded-2xl px-3 py-2 hover:bg-black/5 pl-navlink"
+             data-pl-href="/pages/dharma.html#library" data-route="/pages/dharma.html">Library</a>
         </div>
       </div>
 
       <div class="rounded-3xl p-4 card" style="background: rgba(255,255,255,0.88);">
         <div class="text-xs smallcaps muted">Sangha</div>
         <div class="mt-2 grid gap-2">
-          <a class="rounded-2xl px-3 py-2 hover:bg-black/5 pl-navlink" data-route="/sangha" href="#/sangha">Digital Shrine</a>
-          <a class="rounded-2xl px-3 py-2 hover:bg-black/5 pl-navlink" data-route="/sangha" href="#/sangha#events">Sessions</a>
+          <a class="rounded-2xl px-3 py-2 hover:bg-black/5 pl-navlink"
+             data-pl-href="/pages/sangha.html" data-route="/pages/sangha.html">Digital Shrine</a>
+          <a class="rounded-2xl px-3 py-2 hover:bg-black/5 pl-navlink"
+             data-pl-href="/pages/sangha.html#events" data-route="/pages/sangha.html">Sessions</a>
         </div>
       </div>
 
-      <a class="rounded-2xl px-4 py-2 btn-soft pl-navlink" data-route="/offerings" href="#/offerings">Offerings</a>
-      <a class="rounded-2xl px-4 py-2 btn-soft pl-navlink" data-route="/about" href="#/about">About us</a>
+      <a class="rounded-2xl px-4 py-2 btn-soft pl-navlink"
+         data-pl-href="/pages/offerings.html" data-route="/pages/offerings.html">Offerings</a>
+      <a class="rounded-2xl px-4 py-2 btn-soft pl-navlink"
+         data-pl-href="/pages/about.html" data-route="/pages/about.html">About us</a>
     </div>
   </div>
 </header>
+
 
