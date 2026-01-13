@@ -77,16 +77,17 @@
     }
 
     /* Hero watermark (fade through hero; soften blur when returning) */
-    #heroWatermark {
-      position: absolute;
-      inset: -120px 0 auto 0;
-      display: flex;
-      justify-content: center;
-      pointer-events: none;
-      filter: blur(0px);
-      transition: opacity 600ms ease, transform 600ms ease, filter 600ms ease;
-      will-change: opacity, transform, filter;
-    }
+    <div id="heroWatermark"
+     aria-hidden="true"
+     class="absolute inset-0 flex justify-center items-start pointer-events-none">
+  <img
+    data-pl-src="/assets/img/pl-logo-mark.png"
+    alt=""
+    class="mt-[-120px] w-[520px] md:w-[720px] opacity-[0.06] object-contain"
+    loading="eager"
+    decoding="async"
+  />
+</div>
 
     /* Accessible details dropdown (desktop nav) */
     details.navdrop > summary { list-style: none; cursor: pointer; }
