@@ -2,33 +2,30 @@
 <header class="sticky top-0 z-50 border-b"
   style="border-color: var(--pl-border); background: rgba(255,253,246,0.88);">
   <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-    <a data-pl-href="/index.html" class="flex items-center gap-4">
-      <div class="h-11 w-11 rounded-full grid place-items-center"
+
+    <!-- Brand -->
+    <a class="flex items-center gap-4 pl-navlink" data-pl-href="/index.html" data-route="/index.html">
+      <div class="h-11 w-11 rounded-full grid place-items-center overflow-hidden"
         style="border: 1px solid rgba(201,164,92,0.45); background: rgba(255,255,255,0.60);">
-        <svg width="28" height="28" viewBox="0 0 64 64" fill="none"
-          xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <circle cx="32" cy="32" r="28" stroke="rgba(201,164,92,0.95)" stroke-width="3" />
-          <path d="M32 17c7 6 10 12 10 18 0 7-5 12-10 12s-10-5-10-12c0-6 3-12 10-18Z"
-            stroke="rgba(201,164,92,0.95)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M18 36c4-3 8-4 14-1-4 6-9 10-14 10-4 0-7-3-7-6 0-1 0-2 1-3Z"
-            stroke="rgba(201,164,92,0.95)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M46 36c-4-3-8-4-14-1 4 6 9 10 14 10 4 0 7-3 7-6 0-1 0-2-1-3Z"
-            stroke="rgba(201,164,92,0.95)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M24 41c2-2 5-3 8-3s6 1 8 3"
-            stroke="rgba(201,164,92,0.95)" stroke-width="3" stroke-linecap="round"/>
-        </svg>
+        <img
+          data-pl-src="/assets/img/logo-mark.png"
+          alt="Pure Light Temple lotus mark"
+          class="h-7 w-7 object-contain"
+          loading="eager"
+          decoding="async"
+        />
       </div>
 
       <div class="leading-tight">
-        <div class="text-lg font-semibold"
-          style="letter-spacing: 0.06em; color: var(--pl-ink-strong);">净光法苑</div>
+        <div class="text-lg font-semibold" style="letter-spacing: 0.06em; color: var(--pl-ink-strong);">净光法苑</div>
         <div class="text-xs smallcaps muted">Pure Light Temple</div>
       </div>
     </a>
 
     <!-- Desktop nav -->
     <nav class="hidden md:flex items-center gap-3 text-sm" style="color: var(--pl-ink-soft);">
-      <a class="rounded-2xl px-3 py-2 btn-soft pl-navlink" data-pl-href="/index.html" data-route="/index.html">Home</a>
+      <a class="rounded-2xl px-3 py-2 btn-soft pl-navlink"
+         data-pl-href="/index.html" data-route="/index.html">Home</a>
 
       <details class="navdrop relative" data-pl-dropdown>
         <summary class="px-3 py-2 rounded-2xl btn-soft">Buddha</summary>
@@ -80,14 +77,19 @@
 
       <a class="rounded-2xl px-3 py-2 btn-soft pl-navlink"
          data-pl-href="/pages/offerings.html" data-route="/pages/offerings.html">Offerings</a>
+
       <a class="rounded-2xl px-3 py-2 btn-soft pl-navlink"
          data-pl-href="/pages/about.html" data-route="/pages/about.html">About us</a>
     </nav>
 
+    <!-- Right actions -->
     <div class="flex items-center gap-3">
       <a class="hidden sm:inline-flex rounded-2xl px-4 py-2 text-sm btn-soft pl-navlink"
          data-pl-href="/pages/hall.html" data-route="/pages/hall.html">Take a 3-minute pause</a>
-      <button id="menuBtn" class="md:hidden rounded-2xl px-3 py-2 text-sm btn-soft" type="button">Menu</button>
+
+      <button id="menuBtn" class="md:hidden rounded-2xl px-3 py-2 text-sm btn-soft" type="button">
+        Menu
+      </button>
     </div>
   </div>
 
@@ -95,7 +97,8 @@
   <div id="mobileMenu" class="md:hidden hidden"
     style="border-top: 1px solid var(--pl-border); background: rgba(255,253,246,0.92);">
     <div class="mx-auto max-w-6xl px-5 py-4 grid gap-4 text-sm" style="color: var(--pl-ink-soft);">
-      <a class="rounded-2xl px-4 py-2 btn-soft pl-navlink" data-pl-href="/index.html" data-route="/index.html">Home</a>
+      <a class="rounded-2xl px-4 py-2 btn-soft pl-navlink"
+         data-pl-href="/index.html" data-route="/index.html">Home</a>
 
       <div class="rounded-3xl p-4 card" style="background: rgba(255,255,255,0.88);">
         <div class="text-xs smallcaps muted">Hall</div>
@@ -104,6 +107,16 @@
              data-pl-href="/pages/hall.html" data-route="/pages/hall.html">Pause</a>
           <a class="rounded-2xl px-3 py-2 hover:bg-black/5 pl-navlink"
              data-pl-href="/pages/hall.html#practice" data-route="/pages/hall.html">Practice</a>
+        </div>
+      </div>
+
+      <div class="rounded-3xl p-4 card" style="background: rgba(255,255,255,0.88);">
+        <div class="text-xs smallcaps muted">Buddha</div>
+        <div class="mt-2 grid gap-2">
+          <a class="rounded-2xl px-3 py-2 hover:bg-black/5 pl-navlink"
+             data-pl-href="/pages/buddha.html" data-route="/pages/buddha.html">The Buddha</a>
+          <a class="rounded-2xl px-3 py-2 hover:bg-black/5 pl-navlink"
+             data-pl-href="/pages/buddha.html#symbols" data-route="/pages/buddha.html">Symbols</a>
         </div>
       </div>
 
@@ -129,10 +142,12 @@
 
       <a class="rounded-2xl px-4 py-2 btn-soft pl-navlink"
          data-pl-href="/pages/offerings.html" data-route="/pages/offerings.html">Offerings</a>
+
       <a class="rounded-2xl px-4 py-2 btn-soft pl-navlink"
          data-pl-href="/pages/about.html" data-route="/pages/about.html">About us</a>
     </div>
   </div>
 </header>
+
 
 
