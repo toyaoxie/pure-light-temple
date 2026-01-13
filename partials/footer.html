@@ -1,12 +1,31 @@
 <!-- Pure Light Temple — Footer (partial, multipage) -->
 <footer class="border-t" style="border-color: var(--pl-border);">
   <div class="mx-auto max-w-6xl px-5 py-12 grid gap-10 md:grid-cols-3">
+
+    <!-- Temple identity -->
     <div class="text-sm muted">
-      <div class="font-medium" style="color: var(--pl-ink-strong);">Pure Light Temple   净光法苑</div>
-      <div class="mt-2">A quiet online sanctuary for practice, learning, and gentle connection.</div>
+      <div class="flex items-center gap-3">
+        <div class="h-10 w-10 rounded-full grid place-items-center overflow-hidden"
+             style="border: 1px solid rgba(201,164,92,0.35); background: rgba(255,255,255,0.55);">
+          <img
+            data-pl-src="/assets/img/logo-mark.png"
+            alt="Pure Light Temple lotus mark"
+            class="h-6 w-6 object-contain"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div>
+          <div class="font-medium" style="color: var(--pl-ink-strong);">Pure Light Temple   净光法苑</div>
+          <div class="text-xs muted-light">Purity   Stillness   Light</div>
+        </div>
+      </div>
+
+      <div class="mt-3">A quiet online sanctuary for practice, learning, and gentle connection.</div>
       <div class="mt-3 text-xs muted-light">© <span id="year"></span> Pure Light Temple</div>
     </div>
 
+    <!-- Navigation -->
     <div class="text-sm">
       <div class="font-medium mb-3" style="color: var(--pl-ink-strong);">Explore</div>
       <div class="grid gap-2">
@@ -19,6 +38,7 @@
       </div>
     </div>
 
+    <!-- Contact & social -->
     <div class="text-sm">
       <div class="font-medium mb-3" style="color: var(--pl-ink-strong);">Contact</div>
       <div class="space-y-2">
@@ -36,5 +56,6 @@
         <p class="mt-2 text-xs muted-light">Links can be added when accounts are ready.</p>
       </div>
     </div>
+
   </div>
 </footer>
