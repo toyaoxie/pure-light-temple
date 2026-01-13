@@ -90,3 +90,69 @@ document.addEventListener("DOMContentLoaded", async () => {
   plInitShell();
 });
 
+<script>
+  (function () {
+    const mqDesktop = window.matchMedia("(min-width: 768px)"); // Tailwind md
+
+    function closeAll(except = null) {
+      document.querySelectorAll("details.navdrop[open]").forEach(d => {
+        if (d !== except) d.removeAttribute("open");
+      });
+    }
+
+    function bindDesktopHover() {
+      const drops = Array.from(document.querySelectorAll("details.navdrop"));
+
+      drops.forEach(d => {
+        // 1) Hover open
+        d.addEventListener("mouseenter", () => {
+          if (!mqDesktop.matches) return;
+          closeAll(d);
+          d.setAttribute("open", "");
+        });
+
+        // 2) Leave close (use a tiny delay to avoid flicker)
+        let t = null;
+        d.addEventListener("mouseleave", () => {
+          if (!mqDesktop.matches) return;
+          clearTimeout(t);
+          t = setTimeout(() => d.removeAttribute("open"), 120);
+        });
+
+        // 3) If user clicks inside, keep it open
+        d.addEventListener("click", (e) => {
+          if (!mqDesktop.matches) return;
+          // Prevent <summary> toggling fighting with our hover logic:
+          // We let it stay open, and rely on outside click / mouseleave to close.
+          const isSummary = e.target.closest("summary");
+          if (isSummary) {
+            e.preventDefault();
+            closeAll(d);
+            d.setAttribute("open", "");
+          }
+        });
+      });
+
+      // 4) Outside click close
+      document.addEventListener("click", (e) => {
+        if (!mqDesktop.matches) return;
+        const insideAny = e.target.closest("details.navdrop");
+        if (!insideAny) closeAll();
+      });
+
+      // 5) ESC to close
+      document.addEventListener("keydown", (e) => {
+        if (!mqDesktop.matches) return;
+        if (e.key === "Escape") closeAll();
+      });
+    }
+
+    // Init
+    bindDesktopHover();
+
+    // On breakpoint changes, close all to avoid weird state
+    mqDesktop.addEventListener?.("change", () => closeAll());
+  })();
+</script>
+
+
